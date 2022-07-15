@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
-    public class CommentController1 : Controller
+    public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EfCommentRepository());
 
