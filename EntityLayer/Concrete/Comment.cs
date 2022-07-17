@@ -9,6 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Comment
     {
+
         [Key]
         public int CommentID { get; set; }
         public string CommentUserName { get; set; }
