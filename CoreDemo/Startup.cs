@@ -40,7 +40,7 @@ namespace CoreDemo
                 CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
-                    x.LogoutPath = "/Login/Index";
+                    x.LoginPath = "/Login/Index";
                 }
                 );
 
