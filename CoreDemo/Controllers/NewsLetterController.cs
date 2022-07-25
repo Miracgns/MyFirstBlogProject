@@ -15,11 +15,11 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult SubscribeMail(NewsLetter p)
+        public IActionResult SubscribeMail(NewsLetter p)
         {
             p.MailStatus = true;
             nm.AddNewsLetter(p);
-            return PartialView();
+            return RedirectToAction("BlogReadAll","Blog", new {id=7});
         }
     }
 }
