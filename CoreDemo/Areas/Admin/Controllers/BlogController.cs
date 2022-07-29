@@ -19,7 +19,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             {
                 var worksheet = workbook.Worksheets.Add("Blog Listesi");
                 worksheet.Cell(1, 1).Value = "Blog ID";
-                worksheet.Cell(1, 1).Value = "Blog Adı";
+                worksheet.Cell(1, 2).Value = "Blog Adı";
                 int BlogRowCount = 2;
                 foreach (var item in GetBlogList())
                 {
@@ -59,7 +59,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             {
                 var worksheet = workbook.Worksheets.Add("Blog Listesi");
                 worksheet.Cell(1, 1).Value = "Blog ID";
-                worksheet.Cell(1, 1).Value = "Blog Adı";
+                worksheet.Cell(1, 2).Value = "Blog Adı";
 
                 int BlogRowCount = 2;
                 foreach (var item in BlogTitleList())
