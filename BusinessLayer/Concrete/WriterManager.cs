@@ -17,7 +17,6 @@ namespace BusinessLayer.Concrete
         {
             _writerdal = writerdal;
         }
-
         public List<Writer> GetList()
         {
             throw new NotImplementedException();
@@ -49,7 +48,5 @@ namespace BusinessLayer.Concrete
         {
             _writerdal.Update(t);
         }
-
-
     }
 }

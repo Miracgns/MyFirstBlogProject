@@ -65,35 +65,30 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpGet]
-        public  IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
-            Context c = new Context();
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var id = c.Users.Where(x => x.Email == usermail).Select(y=>y.Id).FirstOrDefault();
-            var values = userManager.TGetById(id);
-            return View(values);
+
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.mail = values.Email;
+            model.namesurname = values.NameSurname;
+            model.imageurl = values.ImageUrl;
+            model.username = values.UserName;
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
-            WriterValidator wl = new WriterValidator();
-            ValidationResult results = wl.Validate(p);
-            if (results.IsValid)
-            {
-                wm.TUpdate(p);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = model.namesurname;
+            values.ImageUrl = model.imageurl;
+            values.Email = model.mail;
+            values.UserName = model.username;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.password);
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index", "Dashboard");
 
-            }
-            return View();
         }
         [AllowAnonymous]
         [HttpGet]
@@ -112,7 +107,7 @@ namespace CoreDemo.Controllers
                 var extension = Path.GetExtension(p.WriterImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
                 var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
-                var stream=new FileStream(location, FileMode.Create, FileAccess.Write);
+                var stream = new FileStream(location, FileMode.Create, FileAccess.Write);
                 p.WriterImage.CopyTo(stream);
                 w.WriterImage = newimagename;
 
@@ -125,6 +120,10 @@ namespace CoreDemo.Controllers
             wm.TAdd(w);
             return RedirectToAction("Index", "Dashboard");
         }
+        //public async Task<IActionResult> LogOut()
+        //{
+
+        //}
     }
 
 }
