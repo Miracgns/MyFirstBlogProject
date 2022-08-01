@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -29,13 +30,12 @@ namespace CoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>(x=>
+            services.AddIdentity<AppUser, AppRole>(x =>
             {
                 x.Password.RequireNonAlphanumeric = false;
             })
-                
-                .AddEntityFrameworkStores<Context>();
 
+                .AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
             services.AddMvc(config =>
             {
@@ -51,8 +51,21 @@ namespace CoreDemo
                 {
                     x.LoginPath = "/Login/Index";
                 }
+
                 );
+
+
+            services.ConfigureApplicationCookie(options =>
+
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.AccessDeniedPath = new PathString("/Admin/Login/AccessDenied/");
+                options.LoginPath = "/Login/Index";
+                options.SlidingExpiration = true;
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,6 +1,7 @@
 ﻿using CoreDemo.Areas.Admin.Models;
 using CoreDemo.Models;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class AdminRolController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
@@ -99,7 +101,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             var user=_userManager.Users.FirstOrDefault(x=>x.Id== id);
             var roles = _roleManager.Roles.ToList();
 
-            TempData["Userid"] = user.Id;
+            TempData["UserId"] = user.Id;
             var userRoles = await _userManager.GetRolesAsync(user);
             List<RoleAssignViewModel> model = new List<RoleAssignViewModel>();
             foreach (var item in roles)
@@ -111,6 +113,25 @@ namespace CoreDemo.Areas.Admin.Controllers
                 model.Add(m);
             }
             return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
+        {
+            var userId = (int) TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id== userId);
+            foreach (var item in model)
+            {
+                if (item.Exists)
+                {
+                    await _userManager.AddToRoleAsync(user, item.name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.name);
+                }
+            }
+
+            return RedirectToAction("UserRoleList");
         }
     }
 }
