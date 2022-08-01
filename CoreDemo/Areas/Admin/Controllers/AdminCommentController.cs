@@ -10,8 +10,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
         public IActionResult Index()
         {
-            var values = commentManager.GetCommentWithBlog();
-            return View();
+            var values = commentManager.GetCommentwithBlog();
+            return View(values);
         }
     }
 }

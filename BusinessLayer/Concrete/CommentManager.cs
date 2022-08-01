@@ -23,15 +23,13 @@ namespace BusinessLayer.Concrete
             _commentdal.Insert(comment);
         }
 
-        public List<Comment> GetCommentWithBlog()
+        public List<Comment> GetCommentwithBlog()
         {
             return _commentdal.GetListWithBlog();
-
         }
 
         public List<Comment> GetList(int id)
         {
-
             return _commentdal.GetListAll(x => x.BlogID == id);
         }
     }
