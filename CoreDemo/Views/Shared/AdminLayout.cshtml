@@ -149,22 +149,20 @@
 
                 </nav>
             </div>
-            
+
             <div class="wrapper wrapper-content animated fadeInRight">
 
                 @RenderBody()
 
             </div>
             <div class="footer">
-                <div class="float-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2018
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Tüm hakları saklıdır | @DateTime.Now.Year</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a href="https://github.com/Miracgns" target="_blank">MYBLOGCORE </a></span>
                 </div>
             </div>
-
         </div>
+
     </div>
 
     <!-- Mainly scripts -->
@@ -187,7 +185,8 @@
     <!-- Peity -->
     <script src="~/inspinia-gh-pages/js/demo/peity-demo.js"></script>
 
-    <script>$(document).ready(function(){
+    <script>
+        $(document).ready(function () {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',

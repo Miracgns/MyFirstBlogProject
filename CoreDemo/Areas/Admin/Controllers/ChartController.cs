@@ -19,27 +19,27 @@ namespace CoreDemo.Areas.Admin.Controllers
             list.Add(new CategoryClass
             {
                 categoryname ="Altın",
-                categorycount = 10
-            });
-            list.Add(new CategoryClass
-            {
-                categoryname = "Eurobond",
-                categorycount = 14
-            });
-            list.Add(new CategoryClass
-            {
-                categoryname = "Nasdaq",
-                categorycount = 5
-            });
-            list.Add(new CategoryClass
-            {
-                categoryname = "Kripto",
                 categorycount = 8
             });
             list.Add(new CategoryClass
             {
+                categoryname = "Eurobond",
+                categorycount = 5
+            });
+            list.Add(new CategoryClass
+            {
+                categoryname = "Nasdaq",
+                categorycount = 8
+            });
+            list.Add(new CategoryClass
+            {
+                categoryname = "Kripto",
+                categorycount = 15
+            });
+            list.Add(new CategoryClass
+            {
                 categoryname = "Borsa İstanbul",
-                categorycount = 2
+                categorycount = 5
             });
             return Json(new { jsonlist = list });
         }
