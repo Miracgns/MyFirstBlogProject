@@ -20,4 +20,4 @@ namespace BusinessLayer.ValidationRules
 
         }
     }
-}
+} 

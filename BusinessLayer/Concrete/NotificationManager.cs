@@ -23,7 +23,7 @@ namespace BusinessLayer.Concrete
             return _notificationDal.GetListAll();
         }
 
-        public void TAdd(Notification t)
+        public void TAdd(Notification t) 
         {
             throw new NotImplementedException();
         }

@@ -15,3 +15,4 @@ namespace EntityLayer.Concrete
         public bool MailStatus { get; set; }
     }
 }
+ 

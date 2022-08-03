@@ -17,7 +17,7 @@ namespace BusinessLayer.Concrete
         {
             _commentdal = commentdal;
         }
-
+         
         public void CommentAdd(Comment comment)
         {
             _commentdal.Insert(comment);

@@ -65,7 +65,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             {
                 Id=2,
                 Name="Ahmet"
-            },
+            }, 
             new WriterClass
             {
                 Id=3,

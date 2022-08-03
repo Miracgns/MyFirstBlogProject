@@ -23,7 +23,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AddCategory()
         {
-            return View();
+            return View(); 
         }
 
         [HttpPost]

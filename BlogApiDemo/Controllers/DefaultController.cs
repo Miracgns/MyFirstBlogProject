@@ -9,7 +9,7 @@ namespace BlogApiDemo.Controllers
     [ApiController]
     public class DefaultController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet] 
         public IActionResult EmployeeList()
         {
             using var c = new Context();

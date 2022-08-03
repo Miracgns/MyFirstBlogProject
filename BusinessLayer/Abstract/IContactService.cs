@@ -12,3 +12,4 @@ namespace BusinessLayer.Abstract
         void ContactAdd(Contact contact);
     }
 }
+ 
