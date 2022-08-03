@@ -23,6 +23,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             return View(values);
         }
 
+        [HttpGet]
         public IActionResult SendBox()
         {
             var username = User.Identity.Name;
