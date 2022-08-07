@@ -6,9 +6,7 @@ using System.Linq;
 namespace CoreDemo.Controllers
 {
     public class DashboardController : Controller
-    { 
-        
-
+    {     
         public IActionResult Index()
         {
             Context c=new Context();
